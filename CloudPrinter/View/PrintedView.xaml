@@ -1,0 +1,66 @@
+﻿<UserControl x:Class="CloudPrinter.View.PrintedView" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:local="clr-namespace:CloudPrinter.View" xmlns:viewModel="clr-namespace:CloudPrinter.ViewModel">
+    <Grid Background="#2fffffff">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="2*" />
+        </Grid.RowDefinitions>
+        <StackPanel Name="stackPanel" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed">
+            <Label FontSize="40" HorizontalAlignment="Center">打印完成！</Label>
+            <Image Height="200" Width="200" Margin="0,50" Source="{Binding QrImage}" />
+            <Label FontSize="25" HorizontalAlignment="Center">请使用手机扫码支付获取电子胶片</Label>
+        </StackPanel>
+        <StackPanel Name="stackPanel1" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Visible">
+            <Label FontSize="40" HorizontalAlignment="Center">打印成功！</Label>
+            <Image Source="/Knd.Printer.Theme;component/Resources/Images/PaySucess.png" Height="200" Width="200" Margin="0,20" />
+        </StackPanel>
+        <Button Grid.Row="1" FontSize="30" Width="200" Height="70" Style="{DynamicResource ConfirmBtn}" Background="#034682" Foreground="#FFFFFFFF" Command="{Binding ReturenWaiCommand}">
+            <TextBlock>
+        <Run Text="返回" /> <Run Text="{Binding Time}" /></TextBlock>
+        </Button>
+        <Border Grid.Row="2" CornerRadius="5" BorderBrush="#FFFFFFFF" Background="#7fffffff" BorderThickness="2" Margin="60,30,60,50">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="2*" />
+                </Grid.RowDefinitions>
+                <DockPanel Margin="50,0">
+                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="35" FontWeight="Bold">
+            <Run Text="姓名：" /> <Run Text="{Binding Name}" /></TextBlock>
+                    <TextBlock HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="35" FontWeight="Bold">
+            <Run Text="检查号：" /> <Run Text="{Binding Accno}" /></TextBlock>
+                </DockPanel>
+                <StackPanel Grid.Row="1" VerticalAlignment="Center" Margin="50,0">
+                    <TextBlock FontSize="35">
+            <Run Text="报告总计：" /> <Run Text="{Binding ReportCount}" /> <Run Text="已打印：" /> <Run Text="{Binding PrintedReportCount}" /></TextBlock>
+                    <TextBlock FontSize="35">
+            <Run Text="胶片总计：" /> <Run Text="{Binding FilmCount}" /> <Run Text="已打印：" /> <Run Text="{Binding PrintedFilmCount}" /></TextBlock>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+    <VisualStateManager.VisualStateGroups>
+        <VisualStateGroup Name="PrintedState">
+            <VisualState x:Name="ReportAndFilm">
+                <Storyboard>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="stackPanel">
+                        <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Collapsed}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="stackPanel1">
+                        <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}" />
+                    </ObjectAnimationUsingKeyFrames>
+                </Storyboard>
+            </VisualState>
+            <VisualState x:Name="ReportAndFilmAndCloud">
+                <Storyboard>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="stackPanel">
+                        <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="stackPanel1">
+                        <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Collapsed}" />
+                    </ObjectAnimationUsingKeyFrames>
+                </Storyboard>
+            </VisualState>
+        </VisualStateGroup>
+    </VisualStateManager.VisualStateGroups>
+</UserControl>

@@ -1,0 +1,62 @@
+﻿<UserControl
+    x:Class="CloudPrinter.View.ErrorViews.FatalErrorView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:CloudPrinter.View.ErrorViews"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006">
+    <Grid
+        Width="600"
+        Height="350"
+        HorizontalAlignment="Center"
+        VerticalAlignment="Center">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="80" />
+        </Grid.RowDefinitions>
+        <Border
+            Grid.RowSpan="3"
+            Background="#FFFFFFFF"
+            CornerRadius="5">
+            <UIElement.Effect>
+                <DropShadowEffect BlurRadius="10" ShadowDepth="5" />
+            </UIElement.Effect>
+        </Border>
+        <StackPanel
+            Grid.Row="0"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Orientation="Horizontal">
+            <Image
+                Width="64"
+                Height="64"
+                VerticalAlignment="Bottom"
+                Source="/Knd.Printer.Theme;component/Resources/Images/error.png" />
+            <TextBlock
+                Margin="5,0,0,0"
+                VerticalAlignment="Center"
+                FontSize="40">
+                终端异常
+            </TextBlock>
+        </StackPanel>
+        <TextBlock
+            Grid.Row="1"
+            Margin="10"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Block.TextAlignment="Center"
+            FontSize="30"
+            Text="{Binding ErrorMsg}"
+            TextWrapping="Wrap" />
+        <Button
+            Name="BtnReturn"
+            Grid.Row="2"
+            Width="150"
+            Height="50"
+            Command="{Binding ShutDownCommand}"
+            Content="退出"
+            FontSize="30"
+            Style="{DynamicResource InteracBtnStyle}" />
+    </Grid>
+</UserControl>

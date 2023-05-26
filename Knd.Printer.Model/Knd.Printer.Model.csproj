@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+	  <TargetFramework>net4.8</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+	  <langversion>10.0</langversion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="Ost.AutoPrinter.Api">
+      <HintPath>..\Dlls\Ost.AutoPrinter.Api.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

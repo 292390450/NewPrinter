@@ -1,0 +1,184 @@
+﻿<Window
+    x:Class="CloudPrinter.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:CloudPrinter"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="MainWindow"
+    Width="{DynamicResource Width}"
+    Height="{DynamicResource Height}"
+    Icon="SelfPeinter.ico"
+    ResizeMode="NoResize"
+    WindowState="Maximized"
+    WindowStyle="None">
+    <Grid Background="{DynamicResource BgBrushKnd}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="120" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="60" />
+        </Grid.RowDefinitions>
+        <Grid
+            Name="grid"
+            Background="{DynamicResource TitleBgBrushKnd}"
+            Column="0"
+            Row="0">
+            <UIElement.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform />
+                    <SkewTransform />
+                    <RotateTransform />
+                    <TranslateTransform Y="-120" />
+                </TransformGroup>
+            </UIElement.RenderTransform>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="360" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Border Grid.Row="0" Grid.Column="0">
+                <Image
+                    Name="TopLeftLogo"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Stretch="None" />
+            </Border>
+            <Grid Column="1" Row="0" />
+            <ItemsControl
+                Grid.Row="0"
+                Grid.Column="2"
+                ItemsSource="{Binding Printer}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <ContentControl Content="{Binding StateView}" />
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+            <Border
+                Grid.ColumnSpan="3"
+                Height="2"
+                VerticalAlignment="Bottom"
+                Background="#e6edf4" />
+        </Grid>
+        <Grid
+            Background="{DynamicResource BgBrushKnd}"
+            Column="0"
+            Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Name="NotifyWidth" Width="{Binding LeftWidth}" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid Column="1">
+                <ContentControl Content="{Binding CurrentControl}" />
+            </Grid>
+            <Grid>
+                <ContentControl Content="{Binding LeftControl}" />
+            </Grid>
+            <Rectangle
+                Width="1"
+                HorizontalAlignment="Right"
+                Fill="#e6edf4" />
+        </Grid>
+        <Grid
+            Name="grid1"
+            Background="{DynamicResource BottomBgBrushKnd}"
+            Column="0"
+            Row="2">
+            <UIElement.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform />
+                    <SkewTransform />
+                    <RotateTransform />
+                    <TranslateTransform Y="60" />
+                </TransformGroup>
+            </UIElement.RenderTransform>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="150" />
+            </Grid.ColumnDefinitions>
+            <Button Width="120" Height="60">
+                <UIElement.InputBindings>
+                    <MouseBinding Command="{Binding GotoSettingCommand}" MouseAction="LeftDoubleClick" />
+                </UIElement.InputBindings>
+                <Control.Template>
+                    <ControlTemplate>
+                        <ContentPresenter Content="{DynamicResource BottomKnd}" />
+                    </ControlTemplate>
+                </Control.Template>
+            </Button>
+            <Grid Column="1" Row="0">
+                <TextBlock
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="{DynamicResource BottomContentSize}"
+                    Foreground="{DynamicResource BottomContentBrush}"
+                    Text="{Binding BusinessMenInfo}" />
+            </Grid>
+            <Grid Column="2" Row="0">
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock
+                        Name="Date"
+                        FontSize="20"
+                        Foreground="#FFFFFFFF" />
+                    <TextBlock
+                        Name="Time"
+                        HorizontalAlignment="Center"
+                        FontSize="18"
+                        Foreground="#FFFFFFFF" />
+                </StackPanel>
+            </Grid>
+            <Border
+                Grid.ColumnSpan="3"
+                Height="2"
+                VerticalAlignment="Top"
+                Background="#072e69" />
+        </Grid>
+        <Grid RowSpan="3" />
+    </Grid>
+    <VisualStateManager.VisualStateGroups>
+        <VisualStateGroup Name="MainState">
+            <VisualState Name="Init">
+                <Storyboard>
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="grid" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)">
+                        <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="-120">
+                            <EasingDoubleKeyFrame.EasingFunction>
+                                <CircleEase EasingMode="EaseInOut" />
+                            </EasingDoubleKeyFrame.EasingFunction>
+                        </EasingDoubleKeyFrame>
+                    </DoubleAnimationUsingKeyFrames>
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="grid1" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)">
+                        <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="60">
+                            <EasingDoubleKeyFrame.EasingFunction>
+                                <CircleEase EasingMode="EaseInOut" />
+                            </EasingDoubleKeyFrame.EasingFunction>
+                        </EasingDoubleKeyFrame>
+                    </DoubleAnimationUsingKeyFrames>
+                </Storyboard>
+            </VisualState>
+            <VisualState x:Name="Normal">
+                <Storyboard>
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="grid" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)">
+                        <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0">
+                            <EasingDoubleKeyFrame.EasingFunction>
+                                <CircleEase EasingMode="EaseInOut" />
+                            </EasingDoubleKeyFrame.EasingFunction>
+                        </EasingDoubleKeyFrame>
+                    </DoubleAnimationUsingKeyFrames>
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="grid1" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)">
+                        <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0">
+                            <EasingDoubleKeyFrame.EasingFunction>
+                                <CircleEase EasingMode="EaseInOut" />
+                            </EasingDoubleKeyFrame.EasingFunction>
+                        </EasingDoubleKeyFrame>
+                    </DoubleAnimationUsingKeyFrames>
+                </Storyboard>
+            </VisualState>
+        </VisualStateGroup>
+    </VisualStateManager.VisualStateGroups>
+</Window>

@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+	  <TargetFramework>net4.8</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+	  <langversion>10.0</langversion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\Images\error.png" />
+    <None Remove="Resources\Images\ok.png" />
+    <None Remove="Resources\Images\warn.png" />
+    <None Remove="Resources\Images\working.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.IO.Ports" Version="7.0.0" />
+    <PackageReference Include="System.Speech" Version="7.0.0" />
+    <PackageReference Include="ZXing.Net" Version="0.16.9" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Knd.Printer.CoreLibFrame45\Knd.Printer.CoreLibFrame45.csproj" />
+    <ProjectReference Include="..\Knd.Printer.Model\Knd.Printer.Model.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Images\error.png" />
+    <Resource Include="Resources\Images\ok.png" />
+    <Resource Include="Resources\Images\warn.png" />
+    <Resource Include="Resources\Images\working.png" />
+  </ItemGroup>
+
+</Project>

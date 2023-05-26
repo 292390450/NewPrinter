@@ -1,0 +1,165 @@
+﻿<UserControl
+    x:Class="CloudPrinter.View.SettingItems.CloudFilmSettingView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:controls="clr-namespace:Knd.Printer.Common.Controls;assembly=Knd.Printer.Common"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:local="clr-namespace:CloudPrinter.View.SettingItems"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:settingItems="clr-namespace:CloudPrinter.ViewModel.SettingItems"
+    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+    xmlns:validete="clr-namespace:Knd.Printer.CoreLibFrame45.Validete;assembly=Knd.Printer.CoreLibFrame45">
+    <Grid>
+        <b:Interaction.Behaviors>
+            <validete:ValidationBehavior />
+        </b:Interaction.Behaviors>
+        <Grid Margin="5,0" Background="#FFFFFFFF">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="50" />
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" FontSize="25">云影像设置</Label>
+            <Rectangle
+                Grid.Row="0"
+                Height="1"
+                VerticalAlignment="Bottom"
+                Fill="#FF808080" />
+            <Grid Margin="10" Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="35" />
+                    <RowDefinition Height="35" />
+                    <RowDefinition Height="35" />
+                    <RowDefinition Height="35" />
+                    <RowDefinition Height="35" />
+                    <RowDefinition Height="35" />
+                    <RowDefinition Height="35" />
+                    <RowDefinition Height="35" />
+                    <RowDefinition Height="35" />
+                    <RowDefinition Height="35" />
+                    <RowDefinition Height="35" />
+                    <RowDefinition Height="35" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150" />
+                    <ColumnDefinition Width="250" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Style="{DynamicResource MinTitieLab}">
+                    启用云影像
+                </Label>
+                <CheckBox
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Width="200"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    IsChecked="{Binding Setting.IsOpenColud}" />
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="2"
+                    Style="{DynamicResource MinDesrcLab}">
+                    启用云影像将开启二维码的支付功能，未启用的医院不要启用
+                </Label>
+                <Label
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Style="{DynamicResource MinTitieLab}">
+                    支付是否等待
+                </Label>
+                <CheckBox
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Width="200"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    IsChecked="{Binding Setting.IsWaitState}" />
+                <Label
+                    Grid.Row="1"
+                    Grid.Column="2"
+                    Style="{DynamicResource MinDesrcLab}">
+                    开启云影像后打印界面的支付状态是否一直等待服务器反馈状态
+                </Label>
+                <Label
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    Style="{DynamicResource MinTitieLab}">
+                    集线器名称
+                </Label>
+                <TextBox
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Width="200"
+                    Height="25"
+                    HorizontalAlignment="Left"
+                    Text="{Binding Setting.HubName}" />
+                <Label
+                    Grid.Row="2"
+                    Grid.Column="2"
+                    Style="{DynamicResource MinDesrcLab}">
+                    终端连接到上传程序的集线器名
+                </Label>
+                <Label
+                    Grid.Row="3"
+                    Grid.Column="0"
+                    Style="{DynamicResource MinTitieLab}">
+                    Signalr地址
+                </Label>
+                <TextBox
+                    Grid.Row="3"
+                    Grid.Column="1"
+                    Width="200"
+                    Height="25"
+                    HorizontalAlignment="Left"
+                    Text="{Binding Setting.SignalrUrl, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+                <Label
+                    Grid.Row="3"
+                    Grid.Column="2"
+                    Style="{DynamicResource MinDesrcLab}">
+                    终端连接到上传程序的地址
+                </Label>
+                <Label
+                    Grid.Row="4"
+                    Grid.Column="0"
+                    Style="{DynamicResource MinTitieLab}">
+                    上传端ID
+                </Label>
+                <TextBox
+                    Grid.Row="4"
+                    Grid.Column="1"
+                    Width="200"
+                    Height="25"
+                    HorizontalAlignment="Left"
+                    Text="{Binding Setting.UploadClientId}" />
+                <Label
+                    Grid.Row="4"
+                    Grid.Column="2"
+                    Style="{DynamicResource MinDesrcLab}">
+                    上传程序ID
+                </Label>
+            </Grid>
+        </Grid>
+        <Button
+            Width="100"
+            Height="30"
+            Margin="20"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Bottom"
+           
+            Command="{Binding SaveCommand}"
+            ToolTip="保存配置重启终端生效">
+            保存
+        </Button>
+        <Border
+            Grid.RowSpan="3"
+            Background="#8fffffff"
+            Visibility="{Binding IsBusy, Converter={StaticResource BoolToVisibilityConverter}}">
+            <controls:BusyControls />
+        </Border>
+    </Grid>
+</UserControl>

@@ -1,0 +1,72 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net4.8</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+	  <langversion>10.0</langversion>
+	  <UseWindowsForms>true</UseWindowsForms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\Images\jianpan.png" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <ProjectReference Include="..\Knd.Printer.Abstract\Knd.Printer.Abstract.csproj" />
+    <ProjectReference Include="..\Knd.Printer.Common\Knd.Printer.Common.csproj" />
+    <ProjectReference Include="..\Knd.Printer.CoreLibFrame45\Knd.Printer.CoreLibFrame45.csproj" />
+    <ProjectReference Include="..\Knd.Printer.Core\Knd.Printer.Core.csproj" />
+    <ProjectReference Include="..\Knd.Printer.Model\Knd.Printer.Model.csproj" />
+    <ProjectReference Include="..\Knd.Printer.SecondApi\Knd.Printer.SecondApi.csproj" />
+    <ProjectReference Include="..\Knd.Printer.Theme\Knd.Printer.Theme.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Aspose.Pdf">
+      <HintPath>..\Dlls\Aspose.Pdf.dll</HintPath>
+    </Reference>
+    <Reference Include="Dicom">
+      <HintPath>..\Dlls\Dicom.dll</HintPath>
+    </Reference>
+    <Reference Include="DicomObjects.NET.6.40">
+      <HintPath>..\Dlls\DicomObjects.NET.6.40.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight">
+      <HintPath>..\Dlls\GalaSoft.MvvmLight.dll</HintPath>
+    </Reference>
+    <Reference Include="Ost.AutoPrinter.Api">
+      <HintPath>..\Dlls\Ost.AutoPrinter.Api.dll</HintPath>
+    </Reference>
+    <Reference Include="Ost.DicomService">
+      <HintPath>..\Dlls\Ost.DicomService.dll</HintPath>
+    </Reference>
+    <Reference Include="Security.6.40">
+      <HintPath>..\Dlls\Security.6.40.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="Telerik.Windows.Controls">
+      <HintPath>..\Dlls\Telerik.Windows.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Input">
+      <HintPath>..\Dlls\Telerik.Windows.Controls.Input.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Images\jianpan.png" />
+    <Resource Include="selfpeinter.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Resources\logo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\winting_page.wmv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

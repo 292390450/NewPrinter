@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+	  <TargetFramework>net4.8</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+	  <langversion>10.0</langversion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Knd.Printer.Common\Knd.Printer.Common.csproj" />
+    <ProjectReference Include="..\Knd.Printer.CoreLibFrame45\Knd.Printer.CoreLibFrame45.csproj" />
+    <ProjectReference Include="..\Knd.Printer.Core\Knd.Printer.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="NLog">
+      <HintPath>..\Dlls\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="Ost.AutoPrinter.Api">
+      <HintPath>..\Dlls\Ost.AutoPrinter.Api.dll</HintPath>
+    </Reference>
+    <Reference Include="Ost.AutoPrinter.Api.Impl">
+      <HintPath>..\Dlls\Ost.AutoPrinter.Api.Impl.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

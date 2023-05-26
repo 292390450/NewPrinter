@@ -1,0 +1,13 @@
+﻿<UserControl x:Class="CloudPrinter.View.InitView" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:local="clr-namespace:CloudPrinter.View" xmlns:viewModel="clr-namespace:CloudPrinter.ViewModel">
+    <Grid>
+        <StackPanel VerticalAlignment="Center">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Image Name="InitLogo" Width="280" />
+                <Label Foreground="#bfffffff" VerticalAlignment="Center" FontSize="50" Margin="0,5,0,0" FontWeight="SemiBold">自助终端</Label>
+            </StackPanel>
+            <ProgressBar Name="Progress" Height="60" Margin="100,50,100,20" Maximum="100" Style="{DynamicResource KndProgress}" Value="{Binding CurrentProgress}" />
+            <TextBlock Foreground="#072e69" FontSize="25" HorizontalAlignment="Center">
+                <Run Text="{Binding InitText}" /> <Run Text="{Binding ElementName=Progress, Path=Value, StringFormat=({0}%)}" /></TextBlock>
+        </StackPanel>
+    </Grid>
+</UserControl>

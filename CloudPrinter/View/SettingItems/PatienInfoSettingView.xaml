@@ -1,0 +1,85 @@
+﻿<UserControl x:Class="CloudPrinter.View.SettingItems.PatienInfoSettingView" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:local="clr-namespace:CloudPrinter.View.SettingItems" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:validete="clr-namespace:Knd.Printer.CoreLibFrame45.Validete;assembly=Knd.Printer.CoreLibFrame45" xmlns:controls="clr-namespace:Knd.Printer.Common.Controls;assembly=Knd.Printer.Common" xmlns:settingItems="clr-namespace:CloudPrinter.ViewModel.SettingItems" xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             xmlns:b="http://schemas.microsoft.com/xaml/behaviors">
+    <Grid>
+        <b:Interaction.Behaviors >
+            <validete:ValidationBehavior />
+        </b:Interaction.Behaviors>
+        <Grid Margin="5,0,5,-26" Background="#FFFFFFFF">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="50" />
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" FontSize="25">信息显示设置</Label>
+            <Rectangle Grid.Row="0" Height="1" Fill="#FF808080" VerticalAlignment="Bottom" />
+            <Grid Row="1" Margin="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="35" />
+                    <RowDefinition Height="35" />
+                    <RowDefinition Height="35" />
+                    <RowDefinition Height="35" />
+                    <RowDefinition Height="35" />
+                    <RowDefinition Height="35" />
+                    <RowDefinition Height="35" />
+                    <RowDefinition Height="35" />
+                    <RowDefinition Height="35" />
+                    <RowDefinition Height="35" />
+                    <RowDefinition Height="35" />
+                    <RowDefinition Height="35" />
+                    <RowDefinition Height="35" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="190" />
+                    <ColumnDefinition Width="250" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Style="{DynamicResource MinTitieLab}">刷新间隔(秒)</Label>
+                <TextBox Grid.Row="0" Grid.Column="1" Height="25" HorizontalAlignment="Left" Width="200" Text="{Binding Setting.RefreshTime, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+                <Label Grid.Row="0" Grid.Column="2" Style="{DynamicResource MinDesrcLab}">刷新时会将列表重置，请根据显示天数内的显示数量进行合理设置</Label>
+                <Label Grid.Row="1" Grid.Column="0" Style="{DynamicResource MinTitieLab}">显示天数</Label>
+                <TextBox Grid.Row="1" Grid.Column="1" Height="25" HorizontalAlignment="Left" Width="200" Text="{Binding Setting.ShowInfoDay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+                <Label Grid.Row="1" Grid.Column="2" Style="{DynamicResource MinDesrcLab}">显示几天内的可打印的任务</Label>
+                <Label Grid.Row="2" Grid.Column="0" Style="{DynamicResource MinTitieLab}">字体大小</Label>
+                <TextBox Grid.Row="2" Grid.Column="1" Height="25" HorizontalAlignment="Left" Width="200" Text="{Binding Setting.InfoFontSize, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+                <Label Grid.Row="2" Grid.Column="2" Style="{DynamicResource MinDesrcLab}">滚动字体大小</Label>
+                <Label Grid.Row="3" Grid.Column="0" Style="{DynamicResource MinTitieLab}">姓名显示宽度</Label>
+                <TextBox Grid.Row="3" Grid.Column="1" Height="25" HorizontalAlignment="Left" Width="200" Text="{Binding Setting.NameWidth, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+                <Label Grid.Row="3" Grid.Column="2" Style="{DynamicResource MinDesrcLab}">宽度</Label>
+                <Label Grid.Row="4" Grid.Column="0" Style="{DynamicResource MinTitieLab}">检查号显示宽度</Label>
+                <TextBox Grid.Row="4" Grid.Column="1" Height="25" HorizontalAlignment="Left" Width="200" Text="{Binding Setting.AccnoWidth, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+                <Label Grid.Row="4" Grid.Column="2" Style="{DynamicResource MinDesrcLab}">宽度</Label>
+                <Label Grid.Row="5" Grid.Column="0" Style="{DynamicResource MinTitieLab}">类型显示宽度</Label>
+                <TextBox Grid.Row="5" Grid.Column="1" Height="25" HorizontalAlignment="Left" Width="200" Text="{Binding Setting.PatientTypeWidth, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+                <Label Grid.Row="5" Grid.Column="2" Style="{DynamicResource MinDesrcLab}">宽度</Label>
+                <Label Grid.Row="6" Grid.Column="0" Style="{DynamicResource MinTitieLab}">检查类型显示宽度</Label>
+                <TextBox Grid.Row="6" Grid.Column="1" Height="25" HorizontalAlignment="Left" Width="200" Text="{Binding Setting.DtypeWidth, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+                <Label Grid.Row="6" Grid.Column="2" Style="{DynamicResource MinDesrcLab}">宽度</Label>
+                <Label Grid.Row="7" Grid.Column="0" Style="{DynamicResource MinTitieLab}">胶片数量显示宽度</Label>
+                <TextBox Grid.Row="7" Grid.Column="1" Height="25" HorizontalAlignment="Left" Width="200" Text="{Binding Setting.FilmCountWidth, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+                <Label Grid.Row="7" Grid.Column="2" Style="{DynamicResource MinDesrcLab}">宽度</Label>
+                <Label Grid.Row="8" Grid.Column="0" Style="{DynamicResource MinTitieLab}">报告数量显示宽度</Label>
+                <TextBox Grid.Row="8" Grid.Column="1" Height="25" HorizontalAlignment="Left" Width="200" Text="{Binding Setting.ReportCountWidth, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+                <Label Grid.Row="8" Grid.Column="2" Style="{DynamicResource MinDesrcLab}">宽度</Label>
+                <Label Grid.Row="9" Grid.Column="0" Style="{DynamicResource MinTitieLab}">其他显示宽度</Label>
+                <TextBox Grid.Row="9" Grid.Column="1" Height="25" HorizontalAlignment="Left" Width="200" Text="{Binding Setting.ParamWidth, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+                <Label Grid.Row="9" Grid.Column="2" Style="{DynamicResource MinDesrcLab}">宽度</Label>
+                <Label Grid.Row="10" Grid.Column="0" Style="{DynamicResource MinTitieLab}">字体颜色</Label>
+                <telerik:RadColorPicker Name="ColorPicker" Grid.Row="10" Grid.Column="1" HorizontalAlignment="Left" Width="200" VerticalAlignment="Center" telerik:StyleManager.Theme="Fluent" StandardPaletteHeaderText="标准标题颜色" NoColorText="不设置颜色" MainPaletteHeaderText="主要颜色" ToolTip="字体颜色修改需要重新开启程序" SelectedColor="{Binding Setting.InfoFontColor}">
+                    <b:Interaction.Triggers >
+                        <b:EventTrigger b:EventTrigger.EventName="SelectedColorChanged">
+                            <b:InvokeCommandAction b:InvokeCommandAction.Command="{Binding ColorChangeCommand}" b:InvokeCommandAction.CommandParameter="{Binding ElementName=ColorPicker}" />
+                        </b:EventTrigger>
+                    </b:Interaction.Triggers>
+                </telerik:RadColorPicker>
+                <Label Grid.Row="10" Grid.Column="2" Style="{DynamicResource MinDesrcLab}">信息页面字体颜色</Label>
+                <Label Grid.Row="11" Grid.Column="0" Style="{DynamicResource MinTitieLab}">*替换名字中第几个字</Label>
+                <TextBox Grid.Row="11" Grid.Column="1" Height="25" HorizontalAlignment="Left" Width="200" Text="{Binding Setting.NameReplace, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+                <Label Grid.Row="11" Grid.Column="2" Style="{DynamicResource MinDesrcLab}">如果有多个用逗号分开，如2，3</Label>
+            </Grid>
+        </Grid>
+        <Button VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="100" Height="30" Margin="10" ToolTip="保存配置重启终端生效"  Command="{Binding SaveCommand}">保存</Button>
+        <Border Grid.RowSpan="3" Background="#8fffffff" Visibility="{Binding IsBusy, Converter={StaticResource BoolToVisibilityConverter}}">
+            <controls:BusyControls />
+        </Border>
+    </Grid>
+</UserControl>

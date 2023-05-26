@@ -1,0 +1,62 @@
+﻿<UserControl
+    x:Class="Knd.Printer.Common.Controls.BusyControls"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Knd.Printer.Common.Controls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <FrameworkElement.Resources>
+        <ResourceDictionary>
+            <Storyboard
+                x:Key="Storyboard1"
+                FillBehavior="Stop"
+                RepeatBehavior="Forever ">
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="path" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)">
+                    <SplineDoubleKeyFrame
+                        KeySpline="0,0,1,1"
+                        KeyTime="0:0:0.8"
+                        Value="360" />
+                </DoubleAnimationUsingKeyFrames>
+            </Storyboard>
+        </ResourceDictionary>
+    </FrameworkElement.Resources>
+    <FrameworkElement.Triggers>
+        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+            <BeginStoryboard HandoffBehavior="SnapshotAndReplace" Storyboard="{StaticResource Storyboard1}" />
+        </EventTrigger>
+    </FrameworkElement.Triggers>
+    <Grid>
+        <Path
+            Name="path"
+            Width="80"
+            Height="65"
+            Data="M56.986811,14 C56.986811,21.731986 50.718798,28 42.986811,28 C35.254825,28 28.986811,21.731986 28.986811,14 C28.986811,6.2680135 35.254825,0 42.986811,0 C50.718798,0 56.986811,6.2680135 56.986811,14 M201.94358,72.923304 C195.35535,68.876221 193.29535,60.254599 197.34243,53.666372 C201.38952,47.078145 210.01114,45.018141 216.59937,49.065225 C223.18759,53.112308 225.2476,61.73393 221.20051,68.322157 C217.15343,74.910384 208.53181,76.970388 201.94358,72.923304 M181.10854,142.27032 C179.66011,134.67521 184.64297,127.34398 192.23808,125.89554 C199.83319,124.44711 207.16442,129.42998 208.61286,137.02508 C210.06129,144.62019 205.07842,151.95143 197.48332,153.39986 C189.88821,154.84829 182.55697,149.86543 181.10854,142.27032 M24.025677,72.958419 C29.422433,78.495444 29.308723,87.359024 23.771699,92.75578 C18.234674,98.152536 9.3710941,98.038827 3.9743379,92.501802 C-1.4224183,86.964778 -1.3087086,78.101198 4.2283157,72.704441 C9.76534,67.307685 18.62892,67.421395 24.025677,72.958419 M48.496859,146.26593 C56.195352,145.54702 63.019005,151.20509 63.737916,158.90358 C64.456827,166.60207 58.798759,173.42573 51.100266,174.14464 C43.401774,174.86355 36.578121,169.20548 35.85921,161.50699 C35.140299,153.8085 40.798367,146.98484 48.496859,146.26593 M120.16493,173.35589 C124.49609,166.95084 133.19951,165.26963 139.60456,169.60079 C146.0096,173.93196 147.69082,182.63538 143.35965,189.04042 C139.02849,195.44547 130.32507,197.12668 123.92002,192.79552 C117.51498,188.46435 115.83376,179.76093 120.16493,173.35589"
+            RenderTransformOrigin="0.506046787845804,0.430328851105929"
+            Stretch="Fill">
+            <UIElement.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="0.7" ScaleY="0.7" />
+                    <SkewTransform />
+                    <RotateTransform Angle="0" />
+                    <TranslateTransform />
+                </TransformGroup>
+            </UIElement.RenderTransform>
+            <UIElement.Effect>
+                <DropShadowEffect
+                    BlurRadius="19"
+                    ShadowDepth="0"
+                    Color="White" />
+            </UIElement.Effect>
+            <Shape.Fill>
+                <RadialGradientBrush GradientOrigin="1.145,-0.049">
+                    <GradientStop Offset="0.427" Color="#FF1EC7BF" />
+                    <GradientStop Offset="0.849" Color="#FF2BDCCC" />
+                    <GradientStop Color="#FF1DB3CB" />
+                </RadialGradientBrush>
+            </Shape.Fill>
+        </Path>
+    </Grid>
+</UserControl>

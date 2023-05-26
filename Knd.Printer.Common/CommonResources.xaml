@@ -1,0 +1,9 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converts="clr-namespace:Knd.Printer.Common.Converts"
+    xmlns:local="clr-namespace:Knd.Printer.Common">
+    <converts:StateToImgConverter x:Key="StateToImgConverter" />
+    <converts:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+    <converts:ColorToBrushConvert x:Key="ColorToBrushConvert" />
+</ResourceDictionary>

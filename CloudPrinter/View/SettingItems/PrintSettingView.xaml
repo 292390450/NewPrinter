@@ -1,0 +1,103 @@
+﻿<UserControl x:Class="CloudPrinter.View.SettingItems.PrintSettingView" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:local="clr-namespace:CloudPrinter.View.SettingItems" xmlns:settingItems="clr-namespace:CloudPrinter.ViewModel.SettingItems" xmlns:interactivity="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:validete="clr-namespace:Knd.Printer.CoreLibFrame45.Validete;assembly=Knd.Printer.CoreLibFrame45" xmlns:controls="clr-namespace:Knd.Printer.Common.Controls;assembly=Knd.Printer.Common" xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" xmlns:system="clr-namespace:System;assembly=mscorlib" xmlns:model="clr-namespace:Knd.Printer.Model;assembly=Knd.Printer.Model"
+             xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+             x:Name="window">
+    <FrameworkElement.Resources>
+        <ResourceDictionary>
+            <!--<ObjectDataProvider x:Key="PrintTypeEnum" MethodName="GetValues" ObjectType="{x:Type system:Enum}" MethodParameters="{x:Type TypeName=model:DicomType}" />-->
+        </ResourceDictionary>
+    </FrameworkElement.Resources>
+    <Grid>
+        <b:Interaction.Behaviors >
+            <validete:ValidationBehavior />
+        </b:Interaction.Behaviors>
+        <Grid Margin="0,-20,33,20" Background="#FFFFFFFF">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="300" />
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" Margin="10,20,0,0" FontSize="25">打印设置</Label>
+            <Rectangle Grid.Row="0" Height="1" Fill="#FF808080" VerticalAlignment="Bottom" />
+            <Grid Row="1" Margin="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="35" />
+                    <RowDefinition Height="35" />
+                    <RowDefinition Height="35" />
+                    <RowDefinition Height="35" />
+                    <RowDefinition Height="35" />
+                    <RowDefinition Height="35" />
+                    <RowDefinition Height="35" />
+                    <RowDefinition Height="35" />
+                    <RowDefinition Height="35" />
+                    <RowDefinition Height="35" />
+                    <RowDefinition Height="35" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150" />
+                    <ColumnDefinition Width="200" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Style="{DynamicResource MinTitieLab}">相机地址</Label>
+                <TextBox Grid.Row="0" Grid.Column="1" Height="25" HorizontalAlignment="Left" Width="200" Text="{Binding Setting.PrinterIp}" />
+                <Label Grid.Row="0" Grid.Column="2" Style="{DynamicResource MinDesrcLab}">打印胶片的相机的ip地址</Label>
+                <Label Grid.Row="1" Grid.Column="0" Style="{DynamicResource MinTitieLab}">相机端口</Label>
+                <TextBox Grid.Row="1" Grid.Column="1" Height="25" HorizontalAlignment="Left" Width="200" Text="{Binding Setting.PrinterPort}" />
+                <Label Grid.Row="1" Grid.Column="2" Style="{DynamicResource MinDesrcLab}">打印胶片的相机的端口号</Label>
+                <Label Grid.Row="2" Grid.Column="0" Style="{DynamicResource MinTitieLab}">相机AE</Label>
+                <TextBox Grid.Row="2" Grid.Column="1" Height="25" HorizontalAlignment="Left" Width="200" Text="{Binding Setting.PrinterAe}" />
+                <Label Grid.Row="2" Grid.Column="2" Style="{DynamicResource MinDesrcLab}">打印胶片的相机的AE名称，用于dicom发现</Label>
+                <Label Grid.Row="3" Grid.Column="0" Style="{DynamicResource MinTitieLab}">DPI</Label>
+                <TextBox Grid.Row="3" Grid.Column="1" Height="25" HorizontalAlignment="Left" Width="200" Text="{Binding Setting.Dpi, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+                <Label Grid.Row="3" Grid.Column="2" Style="{DynamicResource MinDesrcLab}">胶片每英寸像素</Label>
+                <Label Grid.Row="4" Grid.Column="0" Style="{DynamicResource MinTitieLab}">dicom发送类型</Label>
+                <ComboBox Name="ComboPrintOrder" Grid.Row="4" Grid.Column="1" Height="25" HorizontalAlignment="Left" Width="200"  ItemsSource="{Binding  PrintTypeEnum}" SelectedItem="{Binding Setting.DicomType}" />
+                <Label Grid.Row="4" Grid.Column="2" Style="{DynamicResource MinDesrcLab}">报告打印机的名字，用于报告打印</Label>
+                <Label Grid.Row="5" Grid.Column="0" Style="{DynamicResource MinTitieLab}">报告打印机名称</Label>
+                <ComboBox Grid.Row="5" Grid.Column="1" Width="200" HorizontalAlignment="Left"  ItemsSource="{Binding ReportPrinterCollection}" SelectedItem="{Binding Setting.ReportPrinterName}" />
+                <Label Grid.Row="5" Grid.Column="2" Style="{DynamicResource MinDesrcLab}">报告打印机的名字，用于报告打印</Label>
+                <Label Grid.Row="6" Grid.Column="0" Style="{DynamicResource MinTitieLab}">报告打印时间</Label>
+                <TextBox Grid.Row="6" Grid.Column="1" Height="25" HorizontalAlignment="Left" Width="200" Text="{Binding Setting.ReportPrintTime, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+                <Label Grid.Row="6" Grid.Column="2" Style="{DynamicResource MinDesrcLab}">一张报告打印的时长</Label>
+                <Label Grid.Row="7" Grid.Column="0" Style="{DynamicResource MinTitieLab}">返回时间</Label>
+                <TextBox Grid.Row="7" Grid.Column="1" Height="25" HorizontalAlignment="Left" Width="200" Text="{Binding Setting.PrintedReturnTime, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+                <Label Grid.Row="7" Grid.Column="2" Style="{DynamicResource MinDesrcLab}">任务打印完返回时间</Label>
+                <Label Grid.Row="8" Grid.Column="0" Style="{DynamicResource MinTitieLab}">胶片打印方式</Label>
+                <ComboBox Grid.Row="8" Grid.Column="1" Width="200" HorizontalAlignment="Left"  ItemsSource="{Binding SendFilmTypeCollection}" SelectedItem="{Binding Setting.sendFilmType}" />
+                <Label Grid.Row="8" Grid.Column="2" Style="{DynamicResource MinDesrcLab}">选择SendByServer相机地址填写服务端配置胶片打印机的ID</Label>
+                <Label Grid.Row="9" Grid.Column="0" Style="{DynamicResource MinTitieLab}">胶片打印机类型</Label>
+                <ComboBox Grid.Row="9" Grid.Column="1" Width="200" HorizontalAlignment="Left"  ItemsSource="{Binding FilmPrinterTypeCollection}" SelectedItem="{Binding Setting.filmPrinterType}" />
+                <Label Grid.Row="9" Grid.Column="2" Style="{DynamicResource MinDesrcLab}">DicomPrinter是Dicom胶片打印机KndNewPrinter是专用的自助打印机</Label>
+                <Label Grid.Row="10" Grid.Column="0" Style="{DynamicResource MinTitieLab}">条码多余字符串</Label>
+                <TextBox Grid.Row="10" Grid.Column="1" Height="25" HorizontalAlignment="Left" Width="200" Text="{Binding Setting.clearErrorCode, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+                <Label Grid.Row="10" Grid.Column="2" Style="{DynamicResource MinDesrcLab}">用于取消条码号扫出的多余字符串</Label>
+            </Grid>
+            <Grid Row="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="150" />
+                    <RowDefinition Height="150" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="160" />
+                    <ColumnDefinition Width="230" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Style="{DynamicResource MinTitieLab}">胶片打印时间</Label>
+                <DataGrid Background="#FFFFFFFF" Grid.Row="0" Grid.Column="1" Width="220" AutoGenerateColumns="False" CanUserAddRows="False" HorizontalAlignment="Left" ItemsSource="{Binding PrintFilmTimeModels}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="第几张" Width="50" Binding="{Binding PrintFilmCount}" />
+                        <DataGridTextColumn Header="尺寸" Width="80" Binding="{Binding PrintFilmSize}" />
+                        <DataGridTextColumn Header="打印时间" Width="*" Binding="{Binding PrintFilmTime}" />
+                    </DataGrid.Columns>
+                </DataGrid>
+                <StackPanel Grid.Row="0" Grid.Column="2">
+                    <Button Content="添加" Width="50" HorizontalAlignment="Left" Margin="10,10" Command="{Binding AddPrintFilmCountCommand}" />
+                    <Button Content="删除" Width="50" HorizontalAlignment="Left" Margin="10,10" Command="{Binding DelPrintFilmCountCommand}" />
+                </StackPanel>
+            </Grid>
+        </Grid>
+        <Button VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="100" Height="30" Margin="20" ToolTip="保存配置重启终端生效"  Command="{Binding SaveCommand}">保存</Button>
+        <Border Grid.RowSpan="3" Background="#8fffffff" Visibility="{Binding IsBusy, Converter={StaticResource BoolToVisibilityConverter}}">
+            <controls:BusyControls />
+        </Border>
+    </Grid>
+</UserControl>

@@ -1,0 +1,44 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+	  <TargetFramework>net4.8</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+	  <langversion>10.0</langversion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\-e6-b2-99-e6-bc-8f-e5-8a-a8-e7-94-bb.gif" />
+    <None Remove="Resources\1.gif" />
+    <None Remove="Resources\Images\bgl.jpg" />
+    <None Remove="Resources\Images\error.png" />
+    <None Remove="Resources\Images\fail.png" />
+    <None Remove="Resources\Images\forward.png" />
+    <None Remove="Resources\Images\logo.png" />
+    <None Remove="Resources\Images\minilogo.png" />
+    <None Remove="Resources\Images\network_offline.png" />
+    <None Remove="Resources\Images\paysucess.png" />
+    <None Remove="Resources\Images\return_32.png" />
+    <None Remove="Resources\Images\return_64.png" />
+    <None Remove="Resources\Images\timg.jpg" />
+    <None Remove="Resources\Images\user_warning.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\-e6-b2-99-e6-bc-8f-e5-8a-a8-e7-94-bb.gif" />
+    <Resource Include="Resources\1.gif" />
+    <Resource Include="Resources\Images\bgl.jpg" />
+    <Resource Include="Resources\Images\error.png" />
+    <Resource Include="Resources\Images\fail.png" />
+    <Resource Include="Resources\Images\forward.png" />
+    <Resource Include="Resources\Images\logo.png" />
+    <Resource Include="Resources\Images\minilogo.png" />
+    <Resource Include="Resources\Images\network_offline.png" />
+    <Resource Include="Resources\Images\paysucess.png" />
+    <Resource Include="Resources\Images\return_32.png" />
+    <Resource Include="Resources\Images\return_64.png" />
+    <Resource Include="Resources\Images\timg.jpg" />
+    <Resource Include="Resources\Images\user_warning.png" />
+  </ItemGroup>
+
+</Project>
