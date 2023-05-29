@@ -39,10 +39,19 @@ namespace CloudPrinter
             TaskScheduler.UnobservedTaskException += TaskScheduler_UnobservedTaskException;
             try
             {
-                if (RunningInstence() != null)
+                var exist = RunningInstence();
+                if (exist != null)
                 {
-                    MessageBox.Show("不能同时启动多个终端");
-                    Application.Current.Shutdown();
+                    if (exist.MainWindowHandle!=IntPtr.Zero)
+                    {
+                        MessageBox.Show("不能同时启动多个终端");
+                        Application.Current.Shutdown();
+                    }
+                    else
+                    {
+                        exist.Kill();
+                    }
+                   
                 }
             }
             catch (Exception ex2)
