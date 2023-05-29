@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+	  <TargetFramework>net4.8</TargetFramework>
+	  <Nullable>enable</Nullable>
+	  <UseWPF>true</UseWPF>
+	  <langversion>10.0</langversion>
+	  <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Images\printer.png" />
+  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Knd.Printer.Abstract\Knd.Printer.Abstract.csproj" />
+		<ProjectReference Include="..\Knd.Printer.Common\Knd.Printer.Common.csproj" />
+		<ProjectReference Include="..\Knd.Printer.CoreLibFrame45\Knd.Printer.CoreLibFrame45.csproj" />
+		<ProjectReference Include="..\Knd.Printer.Core\Knd.Printer.Core.csproj" />
+		<ProjectReference Include="..\Knd.Printer.Model\Knd.Printer.Model.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Reference Include="Ost.AutoPrinter.Api">
+	    <HintPath>..\Dlls\Ost.AutoPrinter.Api.dll</HintPath>
+	  </Reference>
+	</ItemGroup>
+	<ItemGroup>
+	  <Resource Include="Images\printer.png" />
+	</ItemGroup>
+</Project>
