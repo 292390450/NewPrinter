@@ -23,6 +23,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Devices", "Devices", "{05F0
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Knd.Printer.ReportPrinter", "Knd.Printer.ReportPrinter\Knd.Printer.ReportPrinter.csproj", "{C8DBBC96-55D1-4732-86B7-DEA08E845FC3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Knd.Printer.FujiSerialPortPrinter", "Knd.Printer.FujiSerialPortPrinter\Knd.Printer.FujiSerialPortPrinter.csproj", "{0BB9EC2D-C919-483A-A639-DD221D860A9B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -65,12 +67,17 @@ Global
 		{C8DBBC96-55D1-4732-86B7-DEA08E845FC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C8DBBC96-55D1-4732-86B7-DEA08E845FC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C8DBBC96-55D1-4732-86B7-DEA08E845FC3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0BB9EC2D-C919-483A-A639-DD221D860A9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0BB9EC2D-C919-483A-A639-DD221D860A9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0BB9EC2D-C919-483A-A639-DD221D860A9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0BB9EC2D-C919-483A-A639-DD221D860A9B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{C8DBBC96-55D1-4732-86B7-DEA08E845FC3} = {05F06026-DB45-4961-A1C1-138AE111FF0E}
+		{0BB9EC2D-C919-483A-A639-DD221D860A9B} = {05F06026-DB45-4961-A1C1-138AE111FF0E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {60F1FD42-0E03-436A-91C0-F52AD84CADBB}
