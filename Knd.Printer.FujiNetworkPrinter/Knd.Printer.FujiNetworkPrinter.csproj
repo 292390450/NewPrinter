@@ -7,7 +7,9 @@
 	  <langversion>10.0</langversion>
 	  <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
   </PropertyGroup>
-
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<OutputPath>..\CloudPrinter\bin\Debug\Devices</OutputPath>
+	</PropertyGroup>
   <ItemGroup>
     <None Remove="Images\printer.png" />
   </ItemGroup>
