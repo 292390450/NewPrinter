@@ -1,0 +1,97 @@
+﻿<UserControl
+    x:Class="Knd.Printer.FujiNetworkPrinter.Views.StateView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModels="clr-namespace:Knd.Printer.FujiNetworkPrinter.ViewModels"
+    Width="380"
+    Height="100"
+    Visibility="{Binding FujiSerialPortPrinter.IsOpenStateView, Converter={StaticResource BoolToVisibilityConverter}}">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="66" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid Margin="0,0,2,0" RowSpan="2">
+            <Image
+                Width="64"
+                Height="64"
+                Opacity="1"
+                Source="/Knd.Printer.FujiSerialPortPrinter;component/Images/printer.png" />
+            <Image
+                Name="OkImg"
+                Width="32"
+                Height="32"
+                Margin="32,32,0,0"
+                Source="{Binding FujiSerialPortPrinter.State, Converter={StaticResource StateToImgConverter}}"
+                Visibility="Visible" />
+        </Grid>
+        <TextBlock
+            Grid.Row="0"
+            Grid.Column="1"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Style="{DynamicResource ItemPrintTitle}">
+            胶片打印机
+        </TextBlock>
+        <Rectangle
+            Grid.Row="0"
+            Grid.Column="1"
+            Height="1"
+            VerticalAlignment="Bottom"
+            Fill="#FF808080" />
+        <Grid Column="1" Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="4*" />
+            </Grid.RowDefinitions>
+            <StackPanel
+                Grid.Row="0"
+                Grid.Column="0"
+                Orientation="Horizontal">
+                <TextBlock Name="JobTitleTxt" Style="{DynamicResource ItemTitle}">任务:</TextBlock>
+                <TextBlock
+                    Name="JobCountTxt"
+                    Width="15"
+                    Style="{DynamicResource ItemContent}"
+                    Text="{Binding FujiSerialPortPrinter.Job}">
+                    0
+                </TextBlock>
+                <TextBlock Name="StateTitleTxt" Style="{DynamicResource ItemTitle}">状态:</TextBlock>
+                <TextBlock
+                    Name="StateTxt"
+                    Style="{DynamicResource ItemContent}"
+                    Text="{Binding FujiSerialPortPrinter.Status}" />
+            </StackPanel>
+            <ItemsControl Grid.Row="1" ItemsSource="{Binding FujiSerialPortPrinter.FilmBoxs}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock
+                                Name="LoCountTxt"
+                                Width="40"
+                                FontWeight="Bold"
+                                Style="{DynamicResource ItemContent}"
+                                Text="{Binding Count}" />
+                            <TextBlock
+                                Name="LoSizeTxt"
+                                FontSize="18"
+                                Style="{DynamicResource ItemContent}"
+                                Text="{Binding Size}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Grid>
+    </Grid>
+</UserControl>

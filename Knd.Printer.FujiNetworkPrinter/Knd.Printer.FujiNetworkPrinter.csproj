@@ -28,4 +28,20 @@
 	<ItemGroup>
 	  <Resource Include="Images\printer.png" />
 	</ItemGroup>
+	<ItemGroup>
+	  <None Update="Keys\public.pem">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Keys\SignPriKey.pem">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	</ItemGroup>
+	<ItemGroup>
+	  <Compile Update="Views\SettingView.xaml.cs">
+	    <SubType>Code</SubType>
+	  </Compile>
+	  <Compile Update="Views\StateView.xaml.cs">
+	    <SubType>Code</SubType>
+	  </Compile>
+	</ItemGroup>
 </Project>
