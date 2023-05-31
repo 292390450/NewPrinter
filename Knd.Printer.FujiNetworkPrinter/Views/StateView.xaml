@@ -22,7 +22,7 @@
                 Width="64"
                 Height="64"
                 Opacity="1"
-                Source="/Knd.Printer.FujiSerialPortPrinter;component/Images/printer.png" />
+                Source="/Knd.Printer.FujiNetworkPrinter;component/Images/printer.png" />
             <Image
                 Name="OkImg"
                 Width="32"

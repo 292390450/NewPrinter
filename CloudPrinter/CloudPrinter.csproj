@@ -8,6 +8,7 @@
 	  <langversion>10.0</langversion>
 	  <UseWindowsForms>true</UseWindowsForms>
 	  <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+	  <ApplicationIcon>selfpeinter.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>

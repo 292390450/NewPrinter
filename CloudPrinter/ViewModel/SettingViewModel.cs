@@ -156,6 +156,7 @@ namespace CloudPrinter.ViewModel
             ExitCommand = new RelayCommand(delegate
             {
                 Application.Current.Shutdown(0);
+                Environment.Exit(0);
             });
             base.InitCommand();
         }
