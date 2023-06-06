@@ -134,6 +134,12 @@ namespace Knd.Printer.Model
 
         public string BusinessMenInfo { get; set; }
 
+        public int ScrollTime
+        {
+            get;
+            set;
+        }
+
         public bool IsDeleteTempFile { get; set; }
 
         public bool EnableLight { get; set; }

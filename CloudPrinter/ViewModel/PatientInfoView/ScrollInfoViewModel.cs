@@ -62,7 +62,7 @@ namespace CloudPrinter.ViewModel.PatientInfoView
             }
             if (_timer_printNotifyInfos == null)
             {
-                _timer_printNotifyInfos = new Timer(1000.0);
+                _timer_printNotifyInfos = new Timer((ConfigManager<Setting>.Config.ScrollTime == 0) ? 10000 : (ConfigManager<Setting>.Config.ScrollTime * 1000));
                 _timer_printNotifyInfos.Elapsed += _timer_printNotifyInfos_Elapsed;
             }
             _timer_printNotifyInfos.Start();
