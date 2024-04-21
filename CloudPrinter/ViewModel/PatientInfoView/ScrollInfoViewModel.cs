@@ -97,12 +97,13 @@ namespace CloudPrinter.ViewModel.PatientInfoView
 
         public void GetPinfo()
         {
-            ConfigManager<Setting>.Load();
+            //ConfigManager<Setting>.Load();
             DateTime day = DateTime.Now.AddDays(1 - ConfigManager<Setting>.Config.ShowInfoDay);
             IList<PrintNotifyInfo> res = null;
             try
             {
                 res = RunTimeHost.MEFContainer.GetExportedValue<SecondServiceApi>().GetInfoEntities(new DateTime(day.Year, day.Month, day.Day, 0, 0, 0));
+                res = res.Where(x => x.InfoTime >= day.Date).ToList();
             }
             catch (Exception exc)
             {

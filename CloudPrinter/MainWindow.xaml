@@ -9,7 +9,7 @@
     Width="{DynamicResource Width}"
     Height="{DynamicResource Height}"
     Icon="SelfPeinter.ico"
-    ResizeMode="NoResize"
+    ResizeMode="NoResize" 
     WindowState="Maximized"
     WindowStyle="None">
     <Grid Background="{DynamicResource BgBrushKnd}">

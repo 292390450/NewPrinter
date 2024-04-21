@@ -98,8 +98,15 @@ namespace CloudPrinter.ViewModel
                         PrintFilmSize = "14INX17IN",
                         PrintFilmTime = 30
                     };
-                    ConfigManager<Setting>.Config.printFilmTimeModels = new ObservableCollection<PrintFilmTimeModel>();
-                    ConfigManager<Setting>.Config.printFilmTimeModels.Add(printFilmTimeModel);
+                    ConfigManager<Setting>.Config.printFilmTimeModels = new List<PrintFilmTimeModel>();
+                   // ConfigManager<Setting>.Config.printFilmTimeModels.Add(printFilmTimeModel);
+                    ConfigManager<Setting>.Config.NewPrintFilmTimeModels = new List<NewPrintFilmTimeModel>()
+                    {
+                        new NewPrintFilmTimeModel(){Index = 1,PrintModels = new ObservableCollection<PrintFilmTimeModel>()
+                        {
+                            printFilmTimeModel
+                        }}
+                    };
                     await ConfigManager<Setting>.Save();
                 }
                 else

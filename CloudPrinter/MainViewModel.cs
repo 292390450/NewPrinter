@@ -255,7 +255,7 @@ namespace CloudPrinter
             {
                 try
                 {
-                    ConfigManager<Setting>.Load();
+                    //ConfigManager<Setting>.Load();
                     string clientId = ConfigManager<Setting>.Config.ClientId;
                     if (ConfigManager<Setting>.Config.IsOpenSelfService)
                     {

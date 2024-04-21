@@ -74,24 +74,75 @@
             <Grid Row="2">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="150" />
-                    <RowDefinition Height="150" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="160" />
                     <ColumnDefinition Width="230" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Label Grid.Row="0" Grid.Column="0" Style="{DynamicResource MinTitieLab}">胶片打印时间</Label>
-                <DataGrid Background="#FFFFFFFF" Grid.Row="0" Grid.Column="1" Width="220" AutoGenerateColumns="False" CanUserAddRows="False" HorizontalAlignment="Left" ItemsSource="{Binding PrintFilmTimeModels}">
+               
+                <!--<DataGrid Background="#FFFFFFFF" Grid.Row="0" Grid.Column="1" Width="220" AutoGenerateColumns="False" CanUserAddRows="False" HorizontalAlignment="Left" ItemsSource="{Binding PrintFilmTimeModels}">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="第几张" Width="50" Binding="{Binding PrintFilmCount}" />
                         <DataGridTextColumn Header="尺寸" Width="80" Binding="{Binding PrintFilmSize}" />
                         <DataGridTextColumn Header="打印时间" Width="*" Binding="{Binding PrintFilmTime}" />
                     </DataGrid.Columns>
-                </DataGrid>
-                <StackPanel Grid.Row="0" Grid.Column="2">
-                    <Button Content="添加" Width="50" HorizontalAlignment="Left" Margin="10,10" Command="{Binding AddPrintFilmCountCommand}" />
-                    <Button Content="删除" Width="50" HorizontalAlignment="Left" Margin="10,10" Command="{Binding DelPrintFilmCountCommand}" />
+                </DataGrid>-->
+                <ItemsControl Background="#FFFFFFFF" Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="2" ItemsSource="{Binding PrintFilmTimeModels}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="第" VerticalAlignment="Center"></TextBlock>
+                                    <TextBlock Text="{Binding Index}" VerticalAlignment="Center"></TextBlock>
+                                    <TextBlock Text="张：" VerticalAlignment="Center"></TextBlock>
+                                </StackPanel>
+                                <ItemsControl Grid.Column="1" ItemsSource="{Binding PrintModels}"
+                                              ScrollViewer.HorizontalScrollBarVisibility="Visible">
+                                   <ItemsControl.ItemTemplate>
+                                       <DataTemplate>
+                                           <StackPanel Orientation="Horizontal" Margin="2,0" VerticalAlignment="Center">
+                                                <TextBlock Text="(尺寸：" VerticalAlignment="Center"></TextBlock>
+                                                <TextBox Text="{Binding PrintFilmSize}" VerticalAlignment="Center"></TextBox>
+                                                <TextBlock Text="时间：" VerticalAlignment="Center"></TextBlock>
+                                                <TextBox Text="{Binding PrintFilmTime}" VerticalAlignment="Center"></TextBox>
+                                               
+                                                <Button  Command="{Binding ElementName=window,Path=DataContext.DelStepPrintFilmCountCommand}"
+                                                         CommandParameter="{Binding}" Content="x" Width="20" Height="20" Background="Red" Foreground="White" HorizontalAlignment="Center" Margin="5" />
+                                                <TextBlock Text=")" VerticalAlignment="Center"></TextBlock>
+                                            </StackPanel>
+                                       </DataTemplate>
+                                   </ItemsControl.ItemTemplate>
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                          <StackPanel Orientation="Horizontal"></StackPanel>
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+                                    <ItemsControl.Template>
+                                        <ControlTemplate TargetType="{x:Type ItemsControl}">
+                                            <ScrollViewer
+                                                HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}"
+                                                VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}">
+                                                <ItemsPresenter SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" />
+                                            </ScrollViewer>
+                                        </ControlTemplate>
+                                    </ItemsControl.Template>
+                                </ItemsControl>
+                                <Button Grid.Column="2" CommandParameter="{Binding}" Content="添加" Width="50" HorizontalAlignment="Center" Margin="10,5" Command="{Binding ElementName=window,Path=DataContext.AddStepPrintFilmCountCommand}" />
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <StackPanel Grid.Row="0" Grid.Column="0">
+                    <Label Grid.Row="0" Grid.Column="0" Style="{DynamicResource MinTitieLab}">胶片打印时间</Label>
+                    <Button Content="添加" Width="50" HorizontalAlignment="Center" Margin="10,5" Command="{Binding AddPrintFilmCountCommand}" />
+                    <Button Content="删除" Width="50" HorizontalAlignment="Center" Margin="10,5" Command="{Binding DelPrintFilmCountCommand}" />
                 </StackPanel>
             </Grid>
         </Grid>

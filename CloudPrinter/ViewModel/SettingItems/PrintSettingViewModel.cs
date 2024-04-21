@@ -26,7 +26,7 @@ public class PrintSettingViewModel : ViewModelBase
 
     private ObservableCollection<FilmPrinterType> _filmPrinterTypeCollection;
 
-    private ObservableCollection<PrintFilmTimeModel> _printFilmTimeModels;
+    private ObservableCollection<NewPrintFilmTimeModel> _printFilmTimeModels;
     public List<DicomType> PrintTypeEnum { get; set; } =    new List<DicomType>(Enum.GetValues(typeof(DicomType)).Cast<DicomType>());
     public Setting Setting
     {
@@ -80,7 +80,7 @@ public class PrintSettingViewModel : ViewModelBase
         }
     }
 
-    public ObservableCollection<PrintFilmTimeModel> PrintFilmTimeModels
+    public ObservableCollection<NewPrintFilmTimeModel> PrintFilmTimeModels
     {
         get
         {
@@ -96,6 +96,9 @@ public class PrintSettingViewModel : ViewModelBase
     public RelayCommand SaveCommand { get; private set; }
 
     public RelayCommand AddPrintFilmCountCommand { get; private set; }
+    public RelayCommand<NewPrintFilmTimeModel> AddStepPrintFilmCountCommand { get; private set; }
+
+    public RelayCommand<PrintFilmTimeModel> DelStepPrintFilmCountCommand { get; private set; }
 
     public RelayCommand DelPrintFilmCountCommand { get; private set; }
 
@@ -118,7 +121,32 @@ public class PrintSettingViewModel : ViewModelBase
             ConfigManager<Setting>.Config.ReportPrinterName = ReportPrinterCollection.FirstOrDefault();
             await ConfigManager<Setting>.Save();
         }
-        PrintFilmTimeModels = Setting.printFilmTimeModels;
+
+        PrintFilmTimeModels = new ObservableCollection<NewPrintFilmTimeModel>();
+        if (Setting.NewPrintFilmTimeModels==null)
+        {
+            Setting.NewPrintFilmTimeModels = new List<NewPrintFilmTimeModel>();
+        }
+        foreach (var settingNewPrintFilmTimeModel in Setting.NewPrintFilmTimeModels)
+        {
+          var item= new NewPrintFilmTimeModel()
+            {
+              Index = settingNewPrintFilmTimeModel.Index,
+            };
+            if (settingNewPrintFilmTimeModel.PrintModels!=null)
+            {
+                item.PrintModels = new ObservableCollection<PrintFilmTimeModel>();
+                foreach (var printFilmTimeModel in settingNewPrintFilmTimeModel.PrintModels)
+                {
+                    item.PrintModels.Add(new PrintFilmTimeModel()
+                    {
+                        PrintFilmSize = printFilmTimeModel.PrintFilmSize,
+                        PrintFilmTime = printFilmTimeModel.PrintFilmTime,
+                    });
+                }
+            }
+            PrintFilmTimeModels.Add(item);
+        }
         if (SendFilmTypeCollection == null)
         {
             SendFilmTypeCollection = new ObservableCollection<SendFilmType>();
@@ -139,7 +167,7 @@ public class PrintSettingViewModel : ViewModelBase
         SaveCommand = new RelayCommand(async delegate
         {
             base.IsBusy = true;
-            Setting.printFilmTimeModels = PrintFilmTimeModels;
+            Setting.NewPrintFilmTimeModels = PrintFilmTimeModels.ToList();
             ConfigManager<Setting>.Config = Setting;
             await ConfigManager<Setting>.Save();
             ConfigManager<Setting>.Load();
@@ -149,22 +177,42 @@ public class PrintSettingViewModel : ViewModelBase
         {
             if (PrintFilmTimeModels.Count < 4)
             {
-                PrintFilmTimeModel item = new PrintFilmTimeModel
+                NewPrintFilmTimeModel item = new NewPrintFilmTimeModel
                 {
-                    PrintFilmCount = ConfigManager<Setting>.Config.printFilmTimeModels.LastOrDefault().PrintFilmCount + 1,
-                    PrintFilmSize = "14INX17IN",
-                    PrintFilmTime = 30
+                    Index = (PrintFilmTimeModels.LastOrDefault()?.Index??0) + 1,
+                    PrintModels = new ObservableCollection<PrintFilmTimeModel>()
+                    {
+                        new PrintFilmTimeModel()
+                        {
+                            PrintFilmCount = (PrintFilmTimeModels.LastOrDefault()?.Index??0) + 1,
+                            PrintFilmSize = "14INX17IN",
+                            PrintFilmTime = 30
+                        }
+                    }
                 };
-                ConfigManager<Setting>.Config.printFilmTimeModels.Add(item);
-                PrintFilmTimeModels = ConfigManager<Setting>.Config.printFilmTimeModels;
+              
+                PrintFilmTimeModels.Add(item);
             }
         });
+
+        AddStepPrintFilmCountCommand = new RelayCommand<NewPrintFilmTimeModel>((model =>
+        {
+            model.PrintModels.Add(new PrintFilmTimeModel()
+            {
+                PrintFilmCount = model.Index,
+                PrintFilmSize = "14INX17IN",
+                PrintFilmTime = 30
+            });
+        }));
+        DelStepPrintFilmCountCommand = new RelayCommand<PrintFilmTimeModel>((model =>
+        {
+            PrintFilmTimeModels.FirstOrDefault(x => x.Index == model.PrintFilmCount)?.PrintModels.Remove(model);
+        }));
         DelPrintFilmCountCommand = new RelayCommand(delegate
         {
             if (PrintFilmTimeModels.Count > 1)
             {
                 PrintFilmTimeModels.Remove(PrintFilmTimeModels.LastOrDefault());
-                ConfigManager<Setting>.Config.printFilmTimeModels = PrintFilmTimeModels;
             }
         });
         base.InitCommand();

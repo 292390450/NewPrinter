@@ -768,27 +768,56 @@ namespace CloudPrinter.ViewModel
         public int GetPrintTime(string size, int position)
         {
             int printTime = 0;
-            foreach (PrintFilmTimeModel item2 in ConfigManager<Setting>.Config.printFilmTimeModels)
+            //foreach (PrintFilmTimeModel item2 in ConfigManager<Setting>.Config.printFilmTimeModels)
+            //{
+            //    if (item2.PrintFilmSize == size && item2.PrintFilmCount == position)
+            //    {
+            //        printTime = item2.PrintFilmTime;
+            //    }
+            //}
+            //if (printTime == 0)
+            //{
+            //    foreach (PrintFilmTimeModel item in ConfigManager<Setting>.Config.printFilmTimeModels)
+            //    {
+            //        if (item.PrintFilmSize == size)
+            //        {
+            //            printTime = item.PrintFilmTime;
+            //        }
+            //    }
+            //}
+            //if (printTime == 0)
+            //{
+            //    printTime = ConfigManager<Setting>.Config.printFilmTimeModels.FirstOrDefault().PrintFilmTime;
+            //}
+            try
             {
-                if (item2.PrintFilmSize == size && item2.PrintFilmCount == position)
+                var setp = ConfigManager<Setting>.Config.NewPrintFilmTimeModels?.Find(x => x.Index == position);
+                if (setp!=null)
                 {
-                    printTime = item2.PrintFilmTime;
+                  var matchSize=  setp.PrintModels?.FirstOrDefault(x => x.PrintFilmSize == size);
+                  if (matchSize!=null)
+                  {
+                      printTime = matchSize.PrintFilmTime;
+                  }
+                }
+
+                if (printTime == 0)
+                {
+                    //没找到配置
+                    printTime = ConfigManager<Setting>.Config.NewPrintFilmTimeModels?.FirstOrDefault()?.PrintModels
+                        ?.FirstOrDefault()?.PrintFilmTime ?? 0;
+                }
+
+                if (printTime == 0)
+                {
+                    printTime = 60;
                 }
             }
-            if (printTime == 0)
+            catch (Exception e)
             {
-                foreach (PrintFilmTimeModel item in ConfigManager<Setting>.Config.printFilmTimeModels)
-                {
-                    if (item.PrintFilmSize == size)
-                    {
-                        printTime = item.PrintFilmTime;
-                    }
-                }
+                LogManager.AddLog(e);
             }
-            if (printTime == 0)
-            {
-                printTime = ConfigManager<Setting>.Config.printFilmTimeModels.FirstOrDefault().PrintFilmTime;
-            }
+
             return printTime;
         }
 

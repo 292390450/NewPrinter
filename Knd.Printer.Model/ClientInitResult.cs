@@ -158,7 +158,8 @@ namespace Knd.Printer.Model
 
         public int ReportPrintTime { get; set; }
 
-        public ObservableCollection<PrintFilmTimeModel> printFilmTimeModels { get; set; }
+        public List<PrintFilmTimeModel> printFilmTimeModels { get; set; }
+        public List<NewPrintFilmTimeModel> NewPrintFilmTimeModels { get; set; }
 
         public int PrintedReturnTime { get; set; }
 
