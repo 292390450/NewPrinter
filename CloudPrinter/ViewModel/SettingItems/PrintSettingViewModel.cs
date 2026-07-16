@@ -175,7 +175,7 @@ public class PrintSettingViewModel : ViewModelBase
         }, () => base.IsValid);
         AddPrintFilmCountCommand = new RelayCommand(delegate
         {
-            if (PrintFilmTimeModels.Count < 4)
+            if (PrintFilmTimeModels.Count < 40)
             {
                 NewPrintFilmTimeModel item = new NewPrintFilmTimeModel
                 {
